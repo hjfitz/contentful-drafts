@@ -4,7 +4,7 @@
   "description": "Tool for finding contentful drafts",
   "main": "index.js",
   "scripts": {
-    "run": "node index",
+    "run": "node bin/www",
     "postinstall": "webpack"
   },
   "author": "Harry Fitzgerald <fitzgerald_harry@network.lilly.com>",
