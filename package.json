@@ -36,5 +36,8 @@
     "react-responsive": "^3.0.0",
     "react-router-dom": "^4.2.2",
     "webpack": "^3.8.1"
+  },
+  "engines": {
+    "node": "9.1.x"
   }
 }
