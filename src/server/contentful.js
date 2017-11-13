@@ -6,7 +6,7 @@ const express = require('express');
 const managementApi = express.Router();
 
 const client = contentful.createClient({
-  accessToken: 'CFPAT-133f86643218f19cf926bd1e3c51da7bf3f0a1f81c290ce1e4341802458b0184'
+  accessToken: process.env.CONTENTFUL_MANAGEMENT,
 });
 
 const sortEntries = (ev1, ev2) => {

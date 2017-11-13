@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import format from 'date-fns/format';
+import Materialize from 'materialize-css';
 
 
 const Loading = () => (
-  <div className="progress">
-    <div className="indeterminate"></div>
+  <div style={{
+    position: 'fixed',
+    bottom: '10px',
+    left: '10%',
+    width: '80%',
+  }} className="progress indigo darken-3">
+    <div className="indeterminate indigo lighten-5"></div>
   </div>
 );
 
@@ -47,7 +53,8 @@ export default class Home extends Component {
     const blob = await fetch('/api/contentful/drafts');
     const json = await blob.json();
     console.log(json);
-    this.loaded = true
+    this.loaded = true;
+    Materialize.toast('Page Loaded', 4000)
     this.setState(json);
   }
 
