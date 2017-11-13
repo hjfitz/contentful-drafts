@@ -38,6 +38,6 @@
     "webpack": "^3.8.1"
   },
   "engines": {
-    "node": "9.1.x"
+    "node": "8.1.x"
   }
 }
