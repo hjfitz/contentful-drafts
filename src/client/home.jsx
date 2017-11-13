@@ -54,7 +54,7 @@ export default class Home extends Component {
     const json = await blob.json();
     console.log(json);
     this.loaded = true;
-    Materialize.toast('Page Loaded', 4000)
+    Materialize.toast('Page Updated', 4000)
     this.setState(json);
   }
 
