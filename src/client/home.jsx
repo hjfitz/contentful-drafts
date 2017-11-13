@@ -34,6 +34,7 @@ const renderPage = function ({ drafts, numEntries, numDrafts }) {
     <div className='entries'>
       {totalEntries}
       {totalDraft}
+      <div className='center-align'>
       <a 
         className="waves-effect waves-light btn indigo darken-3" 
         onClick={ () => {
@@ -45,6 +46,7 @@ const renderPage = function ({ drafts, numEntries, numDrafts }) {
         }}>
           {`Current Order: ${this.state.order}`}
         </a>
+        </div>
       <ul className='collection'>{humanDrafts}</ul>
     </div>
   )
