@@ -1,0 +1,38 @@
+{
+  "name": "contentful-drafts",
+  "version": "0.0.0",
+  "description": "Tool for finding contentful drafts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harry Fitzgerald <fitzgerald_harry@network.lilly.com>",
+  "license": "GPL-2.0",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "compression": "^1.7.1",
+    "contentful": "^5.0.2",
+    "contentful-management": "^4.0.3",
+    "cors": "^2.8.4",
+    "date-fns": "^1.29.0",
+    "eslint": "^4.11.0",
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
+    "html-react-parser": "^0.4.0",
+    "loadjs": "^3.5.1",
+    "local-env-var": "^1.0.5",
+    "marked": "^0.3.6",
+    "material-ui": "next",
+    "material-ui-icons": "^1.0.0-beta.17",
+    "morgan": "^1.9.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-responsive": "^3.0.0",
+    "react-router-dom": "^4.2.2",
+    "webpack": "^3.8.1"
+  }
+}
