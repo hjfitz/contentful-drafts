@@ -40,6 +40,7 @@ const getDrafts = async () => {
       updated: sys.updatedAt,
       created: sys.createdAt,
       updatedBy: sys.updatedBy,
+      contentfulLink: `https://app.contentful.com/spaces/${process.env.CONTENTFUL_SPACE}/entries/${sys.id}`,
     }
   });
 
@@ -48,8 +49,8 @@ const getDrafts = async () => {
 
 managementApi.get('/drafts', async (req, res) => {
   const drafts = await getDrafts();
-  
   res.json(drafts);
 });
+
 
 module.exports = managementApi;

@@ -14,25 +14,37 @@ const Loading = () => (
   </div>
 );
 
-const renderPage = ({ drafts, numEntries, numDrafts }) => {
-  const info = <h1>{`${numEntries} entries loaded, ${numDrafts} are draft or updated.`}</h1>;
+const renderPage = function ({ drafts, numEntries, numDrafts }) {
+  const totalEntries = <h1>{`${numEntries} entries loaded`}</h1>
+  const totalDraft = <h2>{`${numDrafts} waiting to be published`}</h2>;
   const humanDrafts = drafts.map(draft => {
     const humanDate = format(new Date(draft.updated), 'dddd Do MMMM YYYY');
     return (
-    <li className='collection-item'>
-      <span className='title'>{draft.title}</span>
-      <p>
-        {`Content Type: ${draft.contentType}`}
-        <br />
-        {`Last Updated: ${humanDate}`}
-      </p>
-    </li>
+    <a key={draft.contentfulLink} className='collection-item' href={draft.contentfulLink}>
+        <span className='title collection-title'>{draft.title}</span>
+        <p>
+          <b>Content Type:</b> {draft.contentType}
+          <br />
+          <b>Last Updated:</b> {humanDate}
+        </p>
+    </a>
   )
   });
   return (
     <div className='entries'>
-      {info}
-      <h2>Sorted by most recently updated</h2>
+      {totalEntries}
+      {totalDraft}
+      <a 
+        className="waves-effect waves-light btn indigo darken-3" 
+        onClick={ () => {
+          const { drafts, order } = this.state;
+          const rev = drafts.reverse();
+          const newOrder = order === 'Newest to Oldest' ? 'Oldest to Newest' : 'Newest to Oldest';
+
+          this.setState({ drafts: rev, order: newOrder });
+        }}>
+          {`Current Order: ${this.state.order}`}
+        </a>
       <ul className='collection'>{humanDrafts}</ul>
     </div>
   )
@@ -45,14 +57,15 @@ export default class Home extends Component {
       drafts: <h1>Loading</h1>,
       numEntries: 0,
       numDrafts: 0,
+      order: 'Newest to Oldest'
     }
     this.loaded = false;
+    this.renderPage = renderPage.bind(this);
   }
 
   async componentWillMount() {
     const blob = await fetch('/api/contentful/drafts');
     const json = await blob.json();
-    console.log(json);
     this.loaded = true;
     Materialize.toast('Page Updated', 4000)
     this.setState(json);
@@ -60,7 +73,7 @@ export default class Home extends Component {
 
   render() {
     if (this.loaded) {
-      return renderPage(this.state);
+      return this.renderPage(this.state);
     } else {
       return <Loading />;
     }
