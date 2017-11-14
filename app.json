@@ -1,0 +1,14 @@
+{
+  "name": "Contentful Drafts Finder",
+  "description": "Find all drafts in a contentful space",
+  "repository": "https://github.com/hjfitz/contentful-drafts",
+  "keywords": ["node", "express", "react", "contentful"],
+  "env": {
+    "CONTENTFUL_SPACE": {
+      "Description": "Your contentful space ID"
+    },
+    "CONTENTFUL_MANAGEMENT": {
+      "Description": "A contentful management token for that space - this is NOT the access token"
+    }
+  }
+}
