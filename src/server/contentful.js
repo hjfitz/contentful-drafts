@@ -13,9 +13,9 @@ const sortEntries = (ev1, ev2) => {
   const ev1Start = new Date(ev1.sys.updatedAt);
   const ev2Start = new Date(ev2.sys.updatedAt);
   if (ev1Start < ev2Start) {
-    return 1;
-  } else if (ev1Start > ev2Start) {
     return -1;
+  } else if (ev1Start > ev2Start) {
+    return 1;
   }
   return 0;
 };
@@ -28,6 +28,7 @@ const getDrafts = async () => {
   const numEntries = entries.total;
   // find all drafts
   const rawDrafts = entries.items.filter(entry => entry.isDraft() || entry.isUpdated());
+
   const numDrafts = rawDrafts.length;
 
   const drafts = rawDrafts.sort(sortEntries).map(draft => {

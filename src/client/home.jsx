@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import format from 'date-fns/format';
+import differenceInMonths from 'date-fns/difference_in_months'
 import Materialize from 'materialize-css';
 
 
@@ -18,9 +19,20 @@ const renderPage = function ({ drafts, numEntries, numDrafts }) {
   const totalEntries = <h1>{`${numEntries} entries loaded`}</h1>
   const totalDraft = <h2>{`${numDrafts} waiting to be published`}</h2>;
   const humanDrafts = drafts.map(draft => {
-    const humanDate = format(new Date(draft.updated), 'dddd Do MMMM YYYY');
+    let className = 'collection-item ';
+    const updated = new Date(draft.updated);
+    const now = new Date();
+    const difference = differenceInMonths(now, updated);
+    
+    if (difference >= 3) {
+      className += 'yellow lighten-4';
+    } else if (difference >= 6) {
+      className += 'red lighten-4';
+    }
+
+    const humanDate = format(updated, 'dddd Do MMMM YYYY');
     return (
-    <a key={draft.contentfulLink} className='collection-item' href={draft.contentfulLink}>
+    <a key={draft.contentfulLink} className={className} href={draft.contentfulLink} target='_blank' rel='noopener'>
         <span className='title collection-title'>{draft.title}</span>
         <p>
           <b>Content Type:</b> {draft.contentType}
@@ -59,7 +71,7 @@ export default class Home extends Component {
       drafts: <h1>Loading</h1>,
       numEntries: 0,
       numDrafts: 0,
-      order: 'Newest to Oldest'
+      order: 'Oldest To Newest'
     }
     this.loaded = false;
     this.renderPage = renderPage.bind(this);

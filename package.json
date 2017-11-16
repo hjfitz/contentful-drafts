@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node bin/www",
-    "postinstall": "webpack"
+    "dev": "nodemon bin/www",
+    "build": "webpack",
+    "postinstall": "webpack",
+    "debug": "node --nolazy --inspect-brk=9229 bin/www"    
   },
   "author": "Harry Fitzgerald <fitzgerald_harry@network.lilly.com>",
   "license": "GPL-2.0",
@@ -39,5 +42,8 @@
   },
   "engines": {
     "node": "8.9.x"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }
